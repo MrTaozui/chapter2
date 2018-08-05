@@ -21,6 +21,8 @@ public final class PropsUtil {
         InputStream is=null;
         try {
         //使用相对于当前项目的classpath的相对路径来查找资源  三种类加载器
+        //main/java main/resource test/java test/resources	都是classpath 目录
+        // 当运行单元测试的时候 就近原则 就即先从 test/java ,test/resources加载类或读取文件       	
         is=Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
         if(is==null){
             throw new FileNotFoundException(fileName+"file is not found");

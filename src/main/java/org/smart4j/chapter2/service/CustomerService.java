@@ -23,42 +23,34 @@ public class CustomerService {
      * @param keyWord
      * @return
      */
-    public  List<Customer> getCustomerList(String keyWord){
-        Connection conn=DatabaseHelper.getConnection();
-        try {
+    public  List<Customer> getCustomerList(String keyWord){     
             String sql="select * from customer";
             return DatabaseHelper.queryEntityList(Customer.class,sql);
-        }
-        finally {
-            DatabaseHelper.closeConnection();
-        }
+    
     }
     /**
      * 获取客户
      */
     public Customer getCustomer(long id){
-        //TODO
-        return  null;
+    	String sql="select * from customer where id =?";    	
+        return  DatabaseHelper.queryEntity(Customer.class, sql, id);
     }
     /**
      * 创建客户
      */
     public boolean createCustomer(Map<String,Object> fieldMap){
-        //TODO
-        return false;
+        return DatabaseHelper.insertEntity(Customer.class, fieldMap);
     }
     /**
      * 更新用户
      */
-    public  boolean updateCustomer(long id,Map<String,Object>fieldMap){
-        //TODO
-        return  false;
+    public  boolean updateCustomer(long id,Map<String,Object>fieldMap){       
+        return  DatabaseHelper.updateEntity(Customer.class, id, fieldMap);
     }
     /**
      * 删除用户
      */
-    public boolean deleteCustpmer(long id){
-    //TODO
-        return  false;
+    public boolean deleteCustomer(long id){
+        return  DatabaseHelper.deleteEntity(Customer.class, id);
     }
 }
